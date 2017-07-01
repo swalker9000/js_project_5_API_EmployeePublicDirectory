@@ -63,6 +63,8 @@ function searchbar() {
 		$('button[type="reset"]').remove();
 		//clears no match message from previous searches
 		$('.no-match').remove();
+		//hides employee profiles from previous searches
+		$('td').hide();
 		//saves input value to a variable
 		var searchValue = $('input').val().toLowerCase();
 		//hides all employee profiles
@@ -181,7 +183,7 @@ function closeModal() {
 }
 
 //call all functions for default screen view
-function defaultScreen() {
+function loadScreen() {
 	selectProfile();
 	hoverProfile();
 	closeModal();
@@ -193,9 +195,9 @@ function defaultScreen() {
 //calls get JSON for random user API
 $.getJSON(randomUserAPI, dataOptions, getEmployeeInfo);
 
-//calls functions for page
-defaultScreen();
+//calls functions to be run upon loading
 searchbar();
+loadScreen();
 
 
 
