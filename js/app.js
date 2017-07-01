@@ -23,7 +23,7 @@ function getEmployeeInfo(data) {
 		//appends employee profile to table row
 		$("tr").append(employeeHTML);
 		
-	});
+	}); 
 
 	//builds HTML for employee modal
 	var detailedHTML;
@@ -49,9 +49,10 @@ function getEmployeeInfo(data) {
 		detailedHTML += '</div>';
 		//appends employee profile to modal div
 		$("#myModal").append(detailedHTML);
-	});
-	
-}
+	}); 
+	//calls default screen
+	loadScreen();
+} 
 
 
 //activates search bar and returns matching employee profile for searched: name and username
@@ -84,8 +85,8 @@ function searchbar() {
 		} 
 		//call reset button
 		resetButton();
-	})
-}
+	}); 
+} 
 
 
 //creates reset button to display all employee profiles after search results have been displayed
@@ -100,8 +101,10 @@ function resetButton() {
 		$('.right-arrow, .left-arrow').show();
 		//remove reset button from display
 		$('button[type="reset"]').remove();
-	})
-}
+		//remove no-match message
+		$('.no-match').remove();
+	}); 
+} 
 
 //display modal for selected employee profile
 function selectProfile() {
@@ -112,8 +115,8 @@ function selectProfile() {
 		e.preventDefault();
 		//display modal for selected modal
 		$('.modal:eq(' + $(this).index() + ')').show().addClass("active");
-	});
-}
+	}); 
+} 
 
 
 //activate next button in modal view
@@ -134,7 +137,7 @@ function nextProfile() {
 			//select next employee modal and show
 			$('.active').removeClass('active').hide().next().addClass('active').show();
 		} 
-	})
+	}); 
 }
 
 //activate previous button in modal view
@@ -155,8 +158,8 @@ function prevProfile() {
 			//select previous employee modal and show
 			$('.active').removeClass('active').hide().prev().addClass('active').show();
 		} 
-	})
-}
+	}); 
+} 
 
 
 //activate hover on employee profile
@@ -168,8 +171,8 @@ function hoverProfile() {
 	},	function() {
 		//when mouse leaves reset color to white
 		$(this).css("background", "#fff");
-	})
-}
+	});
+} 
 
 
 //activate close out button
@@ -179,8 +182,8 @@ function closeModal() {
 		e.preventDefault();
 		//remove active class from modal and hide
 		$('.modal').removeClass('active').hide();
-	})
-}
+	}); 
+} 
 
 //call all functions for default screen view
 function loadScreen() {
@@ -192,12 +195,13 @@ function loadScreen() {
 }
 
 
-//calls get JSON for random user API
+//calls get JSON to generate random user API data
 $.getJSON(randomUserAPI, dataOptions, getEmployeeInfo);
 
 //calls functions to be run upon loading
 searchbar();
-loadScreen();
+
+
 
 
 
